@@ -35,12 +35,12 @@ def payment(request,total=0):
                     total=total+carts.subtotal()
                     tax=13/100*total
                     grandtotal=total+tax
-                host=f'http://{request.META['HTTP_HOST']}'
+                host=f'http://{request.META["HTTP_HOST"]}'
                 
                 header={ 'Authorization':'key live_secret_key_68791341fdd94846a146f0457ff7b455'}
                 url = "https://a.khalti.com/api/v2/epayment/initiate/"
                 payload ={
-                        "return_url": f'{host}{reverse('verify')}',
+                        "return_url": f'{host}{reverse("verify")}',
                         "website_url": f"{host}/",
                         "amount": int(grandtotal*100),
                         "purchase_order_id": str(uuid4()),

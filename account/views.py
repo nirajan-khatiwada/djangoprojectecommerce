@@ -117,7 +117,7 @@ def signup(request):
                 user.save()
             token=default_token_generator.make_token(user)
             mail_subject="ACtivate Your account"
-            host=f'http://{request.META['HTTP_HOST']}'
+            host=f'http://{request.META["HTTP_HOST"]}'
             body=render_to_string("account/email/activate_your_account.html",{'token':token,'username':username,'host':host})
             email=EmailMultiAlternatives(mail_subject,body,"nepcart <usa.nirajankhatiwada29@gmail.com>",to=[user.email])
             email.attach_alternative(body, "text/html")
@@ -137,7 +137,7 @@ def forgotpassword(request):
             user=Account.objects.filter(username=username)
             if user.exists():
                 token=PasswordResetTokenGenerator().make_token(user.first())
-                host=f'http://{request.META['HTTP_HOST']}'
+                host=f'http://{request.META["HTTP_HOST"]}'
                 email=EmailMultiAlternatives("Forgot Password","Do you forgot your password","nepcart <usa.nirajankhatiwada29@gmail.com>",[user.first().email])
                 email.attach_alternative(render_to_string("account/email/forgotpass.html",{'token':token,'username':username,'host':host}),"text/html")
                 email.send()
