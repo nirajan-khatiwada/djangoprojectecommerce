@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{%block content%}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+<div class="container">
+	<div class="row">
+	<aside class="col-md-3">
+		<!--   SIDEBAR   -->
+		{% include "dashboard/includes/sidebar.html" with bar="dashbord" %}
+		<br>
+		<a class="btn btn-light btn-block" href="{%url 'logout'%}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+		<!--   SIDEBAR .//END   -->
+	</aside>
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">Login As:</strong>
+			<span> {{request.user}} {{request.user.last_name}}</span>
+		</header>
+		<div class="card-body">
+			<div class="row"> 
+				<div class="col-md-8">
+					<h6 class="text-muted">Delivery to</h6>
+					<p>{{request.user}} {{request.user.last_name}}<br>  
+					Phone {{request.user.phone_number}} Email: {{request.user.email}} <br>
+			    	Location: {{orderaddr.address_line_1}}, {{orderaddr.city}},{{orderaddr.state}},  {{orderaddr.country}} <br> 
+			 		</p>
+				</div>
+				<div class="col-md-4">
+					<h6 class="text-muted">Payment</h6>
+					
+					<p>Subtotal: {{total}} <br>
+					 Tax:  {{tax}} <br> 
+					 <span class="b">GrandTotal:  {{grandtotal}} </span>
+					</p>
+				</div>
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+		
+		</article> <!-- order-group.// --> 
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{%load static%}
+{%block content%}
+<section class="section-content padding-y bg">
+<div class="container">
+
+
+
+<!-- ============================ COMPONENT 2 ================================= -->
+<div class="row">
+		<main class="col-md-8">
+
+<article class="card mb-4">
+<div class="card-body">
+	<h4 class="card-title mb-4">Review cart</h4>
+	<div class="row">
+		
+		
+		{%for x in data%}
+		<div class="col-md-6">
+			<figure class="itemside  mb-4">
+				<div class="aside"><img src="{{x.product.image.url}}" class="border img-sm"></div>
+				<figcaption class="info">
+					<p>{{x.product.product_name}}</p>
+					<span class="text-muted">{{x.quantity}}x = {{x.subtotal}} </span>
+				</figcaption>
+			</figure>
+		</div> <!-- col.// -->
+		{%endfor%}
+	</div> <!-- row.// -->
+</div> <!-- card-body.// -->
+</article> <!-- card.// -->
+
+
+
+
+<article class="card mb-4">
+<div class="card-body">
+	<h4 class="card-title mb-4">Delivery info</h4>
+	<form action="{%url 'payment'%}" method="POST">
+			{%csrf_token%}
+
+		<div class="row">
+				<div class="form-group col-sm-6">
+					<label>{{form.country.label_tag}}</label>
+					{{form.country}}
+				</div>
+				<div class="form-group col-sm-6">
+					<label>{{form.state.label_tag}}</label>
+					{{form.state}}
+				</div>
+				<div class="form-group col-sm-8">
+					<label>{{form.address_line_1.label_tag}}</label>
+					{{form.address_line_1}}
+				</div>
+				<div class="form-group col-sm-4">
+					<label>{{form.city.label_tag}}</label>
+					{{form.city}}
+				</div>
+				
+		</div> <!-- row.// -->	
+	
+</div> <!-- card-body.// -->
+</article> <!-- card.// -->
+
+
+
+  
+		</main> <!-- col.// -->
+		<aside class="col-md-4">
+			<div class="card">
+		<div class="card-body">
+			<dl class="dlist-align">
+			  <dt>Total price:</dt>
+			  <dd class="text-right">{{total}}</dd>
+			</dl>
+			<dl class="dlist-align">
+			  <dt>Tax:</dt>
+			  <dd class="text-right"> {{tax}}</dd>
+			</dl>
+			<dl class="dlist-align">
+			  <dt>Total:</dt>
+			  <dd class="text-right text-dark b"><strong>{{grandtotal}}</strong></dd>
+			</dl>
+			<hr>
+			<p class="text-center mb-3">
+				<img src="{%static 'images/misc/payments.svg'%}" height="26">
+			</p>
+			<button type="submit" class="btn btn-primary btn-block"> Place Order </button>
+			
+		</div> <!-- card-body.// -->
+		</div> <!-- card.// -->
+		</aside> <!-- col.// -->
+	</div> <!-- row.// -->
+</form>
+<!-- ============================ COMPONENT 2 END//  ================================= -->
+
+
+
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+<!-- ========================= SECTION CONTENT END// ========================= -->
+{%endblock%}

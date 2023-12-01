@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{%block content%}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+<div class="container">
+	<div class="row">
+	<aside class="col-md-3">
+		<!--   SIDEBAR   -->
+		{% include "dashboard/includes/sidebar.html" with bar="order"%}
+		<br>
+		<a class="btn btn-light btn-block" href="{%url 'logout'%}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+		<!--   SIDEBAR .//END   -->
+	</aside>
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">Login As:</strong>
+			<span> {{request.user}} {{request.user.last_name}}</span>
+		</header>
+		<div class="card-body">
+			<div class="row"> 
+				<table class="table">
+					<thead>
+			
+					  <tr>
+			
+						<th scope="col">Product</th>
+						<th scope="col">Each One Price</th>
+						<th scope="col">Quantity</th>
+					  </tr>
+				
+					</thead>
+					<tbody>
+						{%for x in data%}
+					  <tr>
+						
+						<td>{{x.product.product_name}}</td>
+						<td>{{x.subtotal}}</td>
+						<td>{{x.quantity}}</td>
+					  </tr>
+					{%endfor%}
+					</tbody>
+				  </table>
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+		
+		</article> <!-- order-group.// --> 
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+{% endblock %}
