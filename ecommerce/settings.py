@@ -86,8 +86,12 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER':'postgres',
+        'PASSWORD':'3d-DgDAa6gf6DFdDCbEDa3-Aa3FfFfc2',
+        'HOST':'roundhouse.proxy.rlwy.net',
+        'PORT':'42711'
     }
 }
 
