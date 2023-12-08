@@ -4,6 +4,8 @@ def counter(request):
     if request.user.is_authenticated:
         data=CartItem.objects.filter(user=request.user,is_ordered=False)
     else:
+        if request.session.session_key is None:
+            return dict(count=0)
         data=CartItem.objects.filter(cart__cart_id=request.session.session_key)
 
     quantity=0
